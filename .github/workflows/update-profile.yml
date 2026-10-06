@@ -1,0 +1,37 @@
+name: Update profile activity
+
+on:
+    schedule:
+        - cron: "17 6 * * *"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+concurrency:
+    group: update-profile-activity
+    cancel-in-progress: true
+
+jobs:
+    update:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+
+            - name: Refresh contribution artwork
+              run: python -m scripts.generate_profile --activity-only
+
+            - name: Run tests
+              run: python -m unittest discover -s tests -v
+
+            - name: Commit changed activity data
+              uses: stefanzweifel/git-auto-commit-action@v6
+              with:
+                  commit_message: "chore: refresh profile activity [skip ci]"
+                  file_pattern: "data/contributions.json assets/contribution-heatmap.svg"

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="488" height="330" viewBox="0 0 488 330" role="img" aria-labelledby="title desc">
+    <title id="title">Professional information card</title>
+    <desc id="desc">Professional information card for Wildan Setya Nugraha</desc>
+    <rect width="100%" height="100%" rx="14" fill="#0d1117" stroke="#30363d"/>
+    <style>@keyframes enter{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}.line{opacity:0;animation:enter .45s ease-out forwards}@media(prefers-reduced-motion:reduce){.line{opacity:1;animation:none}}</style>
+    <text x="32" y="44" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="17" font-weight="700">wwdnn@github</text>
+    <line x1="32" y1="60" x2="456" y2="60" stroke="#8b949e" opacity=".45"/>
+    <g class="line" style="animation-delay:0.12s"><text x="32" y="96" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Role      </text><text x="142" y="96" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Full-stack Developer</text></g>
+    <g class="line" style="animation-delay:0.22s"><text x="32" y="139" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Frontend  </text><text x="142" y="139" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">TypeScript · React · Next.js</text></g>
+    <g class="line" style="animation-delay:0.32s"><text x="32" y="182" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Backend   </text><text x="142" y="182" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Python · Odoo ERP</text></g>
+    <g class="line" style="animation-delay:0.42s"><text x="32" y="225" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Database  </text><text x="142" y="225" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">PostgreSQL</text></g>
+    <g class="line" style="animation-delay:0.52s"><text x="32" y="268" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Focus     </text><text x="142" y="268" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="14">Web applications and ERP systems</text></g>
+</svg>
