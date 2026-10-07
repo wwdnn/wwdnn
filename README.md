@@ -1,6 +1,6 @@
 <picture>
     <source media="(max-width: 600px)" srcset="./assets/hero-mobile.svg" />
-    <img src="./assets/hero.svg" width="900" alt="Wildan Setya Nugraha, Full-stack Developer. Middle Full-stack Developer at PT Neural Technologies Indonesia since 2025, following a Junior role from 2023 to 2025. I build business platforms, ERP integrations, and performance-sensitive web systems." />
+    <img src="./assets/hero.svg" width="900" alt="Wildan Setya Nugraha, Full-stack Developer. Previously a Middle Full-stack Developer at PT Neural Technologies Indonesia from 2025 to 2026, following a Junior role from 2023 to 2025. I build business platforms, ERP integrations, and performance-sensitive web systems." />
 </picture>
 
 <picture>

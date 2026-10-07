@@ -27,13 +27,13 @@ def render_hero(profile: Profile, portrait: tuple[str, ...], mobile: bool = Fals
     meta_y = cy + art_height + 46
     parts.append(f'<line x1="{cx + 24}" y1="{meta_y - 17}" x2="{cx + cw - 24}" y2="{meta_y - 17}" stroke="#2c394b"/>')
     parts.extend([
-        text("Current role", cx + 24, meta_y + 5, 12, "#9aabc0"),
+        text("Latest experience", cx + 24, meta_y + 5, 12, "#9aabc0"),
         text("Middle Full-stack Developer", cx + 24, meta_y + 34, 17, weight=500),
     ])
     p, end = paragraph("PT Neural Technologies Indonesia", cx + 24, meta_y + 59, cw - 48, 13)
     parts.append(p)
     parts.append(text("Junior  ·  2023–2025", cx + 24, end + 19, 13))
-    parts.append(text("Middle  ·  2025–Present", cx + 24, end + 47, 13, "#b8cde7"))
+    parts.append(text("Middle  ·  2025–2026", cx + 24, end + 47, 13, "#b8cde7"))
     if not mobile:
         parts.append(text("Business platforms    /    ERP integrations    /    Web performance", 26, 540, 13, "#afc2df"))
     else:
