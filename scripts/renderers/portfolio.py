@@ -32,10 +32,10 @@ def project_card(project: Project, width: int, mobile: bool = False) -> tuple[st
             parts.append(p)
             bottom = max(bottom, end)
         y = bottom
-    for heading, body in project.story:
-        y += 24
-        parts.append(text(heading, 26, y, 16 if mobile else 14, weight=500))
-        p, y = paragraph(body, 26, y + 24, width - 52, 16 if mobile else 13)
+    for bullet in project.bullets:
+        y += 18
+        parts.append(f'<circle cx="29" cy="{y - 4}" r="2.5" fill="{accent}"/>')
+        p, y = paragraph(bullet, 42, y, width - 68, 16 if mobile else 14)
         parts.append(p)
     y += 14
     x = 26
@@ -56,7 +56,8 @@ def render_projects(mobile: bool = False) -> str:
     card_width = width - 32 if mobile else 426
     cards = [project_card(project, card_width, mobile) for project in PROJECTS]
     parts = [text("Selected work", 16 if mobile else 24, 30, 22, weight=500), text("Delivered at PT Neural Technologies Indonesia", 16 if mobile else 24, 54, 13)]
-    positions = [(16, 78), (16, 100 + cards[0][1]), (16, 122 + cards[0][1] + cards[1][1])] if mobile else [(16, 78), (458, 78), (458, 100 + cards[1][1])]
+    # Comparable compact cards use a two-card first row and one centred card below.
+    positions = [(16, 78), (16, 100 + cards[0][1]), (16, 122 + cards[0][1] + cards[1][1])] if mobile else [(16, 78), (458, 78), (237, 100 + max(cards[0][1], cards[1][1]))]
     height = 0
     for (content, card_height), (x, y) in zip(cards, positions):
         parts.append(f'<g transform="translate({x} {y})">{content}</g>')

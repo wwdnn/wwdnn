@@ -1,13 +1,12 @@
 """Professional hero with a self-typing ASCII portrait and career information."""
 
-from html import escape
-
 from scripts.domain.profile import Profile
 from scripts.renderers.primitives import document, panel, paragraph, text
+from scripts.renderers.ascii_art import ascii_art
 
 
 def render_hero(profile: Profile, portrait: tuple[str, ...], mobile: bool = False) -> str:
-    width, height = (390, 780) if mobile else (900, 462)
+    width, height = (390, 780) if mobile else (900, 565)
     x = 26
     parts = [text(f"{profile.username} / GitHub", x, 30, 13, "#aab8cb")]
     parts.append('<g class="enter">')
@@ -20,25 +19,23 @@ def render_hero(profile: Profile, portrait: tuple[str, ...], mobile: bool = Fals
     parts.append(p)
     parts.append('</g>')
 
-    cx, cy, cw, ch = (26, int(y + 25), width - 52, 256) if mobile else (565, 58, 309, 338)
+    cx, cy, cw, ch = (26, int(y + 25), width - 52, 460) if mobile else (565, 58, 309, 450)
     parts.append(panel(cx, cy, cw, ch, "#151d29", "#2c394b"))
-    if portrait:
-        char_size = 5.8
-        px = cx + cw - len(portrait[0]) * char_size * .6 - 16
-        py = cy + 14
-        for index, line in enumerate(portrait):
-            parts.append(f'<text class="ascii-row" x="{px}" y="{py + index * 6.5}" font-family="Consolas,monospace" font-size="{char_size}" fill="#b4c8e4" opacity=".18" xml:space="preserve" style="animation-delay:{index * .035:.3f}s">{escape(line)}</text>')
+    portrait_width = 265 if mobile else 257
+    art, art_height = ascii_art(portrait, cx + (cw - portrait_width) / 2, cy + 20, portrait_width, "hero-portrait")
+    parts.append(art)
+    meta_y = cy + art_height + 46
+    parts.append(f'<line x1="{cx + 24}" y1="{meta_y - 17}" x2="{cx + cw - 24}" y2="{meta_y - 17}" stroke="#2c394b"/>')
     parts.extend([
-        text("Current role", cx + 24, cy + 34, 12, "#9aabc0"),
-        text("Middle Full-stack", cx + 24, cy + 70, 19, weight=500),
-        text("Developer", cx + 24, cy + 95, 19, weight=500),
+        text("Current role", cx + 24, meta_y + 5, 12, "#9aabc0"),
+        text("Middle Full-stack Developer", cx + 24, meta_y + 34, 17, weight=500),
     ])
-    p, _ = paragraph("PT Neural Technologies Indonesia", cx + 24, cy + 154, cw - 48, 13)
+    p, end = paragraph("PT Neural Technologies Indonesia", cx + 24, meta_y + 59, cw - 48, 13)
     parts.append(p)
-    parts.append(text("Junior  ·  2023–2025", cx + 24, cy + 204, 13))
-    parts.append(text("Middle  ·  2025–Present", cx + 24, cy + 233, 13, "#b8cde7"))
+    parts.append(text("Junior  ·  2023–2025", cx + 24, end + 19, 13))
+    parts.append(text("Middle  ·  2025–Present", cx + 24, end + 47, 13, "#b8cde7"))
     if not mobile:
-        parts.append(text("Business platforms    /    ERP integrations    /    Web performance", 26, 438, 13, "#afc2df"))
+        parts.append(text("Business platforms    /    ERP integrations    /    Web performance", 26, 540, 13, "#afc2df"))
     else:
         height = cy + ch + 56
         parts.append(text("Full-stack delivery since 2023", 26, height - 18, 13, "#afc2df"))
