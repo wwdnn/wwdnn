@@ -19,7 +19,7 @@ PROJECTS = (
     Project(
         title=("Hydraulic engineering", "platform"),
         subtitle="Engineering, sales & ERP workflows",
-        period="Middle Full-stack · 2025–Present",
+        period="Middle Full-stack · 2025–2026",
         description="Owned delivery from hydraulic calculations to quotation workflows.",
         outcomes=(("40–50", "platform users"), ("< 1 week", "lead to quotation")),
         bullets=(
@@ -33,7 +33,7 @@ PROJECTS = (
     Project(
         title=("Whole-slide image", "delivery"),
         subtitle="Browser viewing & NAS synchronization",
-        period="Middle Full-stack · 2025–Present",
+        period="Middle Full-stack · 2025–2026",
         description="Built browser viewing and background sync for around 400 SVS files.",
         outcomes=(("300–500 ms", "tile response"), ("< 50 MB", "transferred per test session")),
         bullets=(
