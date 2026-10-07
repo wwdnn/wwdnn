@@ -29,7 +29,7 @@
 
 ### PT Neural Technologies Indonesia
 
-**Middle Full-stack Developer · 2025–Present**
+**Middle Full-stack Developer · 2025–2026**
 
 - Owned delivery of a modular hydraulic engineering platform for 40–50 users across sales, engineering, inventory, and finance. Around 20 leads and 200 stack calculations are processed per month; lead-to-quotation time fell from roughly two weeks to under one week.
 - Designed client-server architecture with lazy loading and tree-based calculations. Design updates fell from 10+ minutes to under a minute; stress-test duration fell from 60+ minutes to at most 30 minutes.
