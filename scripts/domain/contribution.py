@@ -38,7 +38,7 @@ def calculate_stats(days: list[ContributionDay], today: date | None = None) -> C
         previous = day.date
 
     lookup = {day.date: day for day in ordered}
-    cursor = min(today or date.today(), ordered[-1].date)
+    cursor = today or date.today()
     if lookup.get(cursor, ContributionDay(cursor, 0, 0)).count == 0:
         cursor -= timedelta(days=1)
 
@@ -53,4 +53,3 @@ def calculate_stats(days: list[ContributionDay], today: date | None = None) -> C
         longest_streak=longest,
         best_day=max(ordered, key=lambda day: day.count),
     )
-

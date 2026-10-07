@@ -7,7 +7,9 @@ from pathlib import Path
 
 from scripts.domain.contribution import ContributionDay
 from scripts.domain.profile import WILDAN
-from scripts.renderers.ascii_portrait import render_ascii_portrait
+from scripts.renderers.ascii_portrait import portrait_rows, render_ascii_portrait
+from scripts.renderers.hero import render_hero
+from scripts.renderers.portfolio import render_competencies, render_projects
 from scripts.renderers.contribution_heatmap import render_heatmap
 from scripts.renderers.info_card import render_info_card
 from scripts.sources.github_contributions import fetch_contributions, parse_contributions
@@ -37,8 +39,9 @@ def load_days(path: Path) -> list[ContributionDay]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate Wildan's GitHub Profile README artwork")
     parser.add_argument("--offline", action="store_true", help="Use the checked-in contribution snapshot")
-    parser.add_argument("--static-only", action="store_true", help="Only regenerate portrait and info card")
-    parser.add_argument("--activity-only", action="store_true", help="Only refresh contribution data and heatmap")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--static-only", action="store_true", help="Only regenerate professional artwork")
+    mode.add_argument("--activity-only", action="store_true", help="Only refresh contribution data and heatmap")
     parser.add_argument("--html-file", type=Path, help="Parse a previously downloaded GitHub contribution page")
     args = parser.parse_args()
 
@@ -47,6 +50,13 @@ def main() -> None:
     if not args.activity_only:
         write_text(assets / "info-card.svg", render_info_card(WILDAN))
         write_text(assets / "profile-ascii.svg", render_ascii_portrait(assets / "profile-cutout.png"))
+        portrait = portrait_rows(assets / "profile-cutout.png")
+        logos = {path.stem: path.read_text(encoding="utf-8") for path in (assets / "logos").glob("*.svg")}
+        for mobile in (False, True):
+            suffix = "-mobile" if mobile else ""
+            write_text(assets / f"hero{suffix}.svg", render_hero(WILDAN, portrait, mobile))
+            write_text(assets / f"projects{suffix}.svg", render_projects(mobile))
+            write_text(assets / f"competencies{suffix}.svg", render_competencies(logos, mobile))
 
     if args.static_only:
         return
@@ -58,6 +68,7 @@ def main() -> None:
         days = fetch_contributions(WILDAN.username)
     write_text(data_path, serialize_days(days))
     write_text(assets / "contribution-heatmap.svg", render_heatmap(days))
+    write_text(assets / "contribution-heatmap-mobile.svg", render_heatmap(days, mobile=True))
 
 
 if __name__ == "__main__":

@@ -30,8 +30,11 @@ jobs:
             - name: Run tests
               run: python -m unittest discover -s tests -v
 
+            - name: Validate generated SVG artwork
+              run: python -m scripts.validate_artwork
+
             - name: Commit changed activity data
               uses: stefanzweifel/git-auto-commit-action@v6
               with:
                   commit_message: "chore: refresh profile activity [skip ci]"
-                  file_pattern: "data/contributions.json assets/contribution-heatmap.svg"
+                  file_pattern: "data/contributions.json assets/contribution-heatmap*.svg"

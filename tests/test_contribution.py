@@ -5,6 +5,10 @@ from scripts.domain.contribution import ContributionDay, calculate_stats
 
 
 class ContributionStatsTest(unittest.TestCase):
+    def test_stale_snapshot_has_no_current_streak(self) -> None:
+        day = ContributionDay(date(2026, 1, 1), 5, 1)
+        self.assertEqual(calculate_stats([day], today=date(2026, 1, 7)).current_streak, 0)
+
     def test_calculates_streaks_and_best_day(self) -> None:
         days = [
             ContributionDay(date(2026, 1, 1), 1, 1),
@@ -23,4 +27,3 @@ class ContributionStatsTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
